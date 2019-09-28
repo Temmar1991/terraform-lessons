@@ -8,7 +8,7 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-resource "aws_security_group" "my_webserver" {
+resource "aws_security_group" "my_webserver-dynamic" {
   name = "WebServer Security Group"
   description = "My First SecurityGroup"
   
