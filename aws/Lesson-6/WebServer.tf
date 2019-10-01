@@ -15,12 +15,16 @@ resource "aws_instance" "my_webserver" {
   user_data = templatefile("user-data.sh.tpl", {
   f_name = "Artem",
   l_name = "Melnyk",
-  names = ["Vasya", "Kolya", "Petya", "John", "Donald"]
+  names = ["Vasya", "Kolya", "Petya", "John", "Donald", "Test"]
   })
 
   tags = {
     Name = "Web Server Build by Terraform"
     Owner = "Artem Melnyk"
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
     
 }
