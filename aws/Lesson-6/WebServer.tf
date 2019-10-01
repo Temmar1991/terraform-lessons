@@ -15,7 +15,7 @@ resource "aws_instance" "my_webserver" {
   user_data = templatefile("user-data.sh.tpl", {
   f_name = "Artem",
   l_name = "Melnyk",
-  names = ["Vasya", "Kolya", "Petya", "John", "Donald", "Test"]
+  names = ["Vasya", "Kolya", "Petya", "John", "Donald", "Test1"]
   })
 
   tags = {
