@@ -15,7 +15,7 @@ resource "aws_instance" "my_webserver" {
   user_data = templatefile("user-data.sh.tpl", {
   f_name = "Artem",
   l_name = "Melnyk",
-  names = ["Vasya", "Kolya", "Petya", "John", "Donald", "Test1"]
+  names = ["Vasya", "Kolya", "Petya", "John", "Donald", "XYZ"]
   })
 
   tags = {
@@ -23,8 +23,12 @@ resource "aws_instance" "my_webserver" {
     Owner = "Artem Melnyk"
   }
 
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
+
   lifecycle {
-    prevent_destroy = true
+    ignore_changes = ["ami", "user_data"]
   }
     
 }
