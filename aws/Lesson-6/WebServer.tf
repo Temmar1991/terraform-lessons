@@ -42,6 +42,7 @@ resource "aws_instance" "my_webserver" {
 }
 
 resource "aws_security_group" "my_webserver" {
+  
   name = "WebServer Security Group"
   description = "My First SecurityGroup"
   
@@ -73,4 +74,9 @@ resource "aws_security_group" "my_webserver" {
     Owner = "Artem Melnyk"
   }
 
-} 
+}
+
+output "webserver_instance_id" {
+  value = aws_instance.my_webserver.id
+}
+
