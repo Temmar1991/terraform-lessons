@@ -8,6 +8,10 @@ provider "aws" {
   region = "eu-central-1"
 }
 
+resource "aws_eip" "my_static_ip" {
+  instance = aws_instance.my_webserver.id
+}
+
 resource "aws_instance" "my_webserver" {
   ami = "ami-00aa4671cbf840d82"
   instance_type = "t3.micro"
