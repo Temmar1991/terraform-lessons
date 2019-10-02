@@ -12,6 +12,21 @@ data "aws_region" "current" {}
 
 data "aws_vpcs" "my_vpcs" {}
 
+data "aws_vpc" "prod_vpc" {
+  tags = {
+      Name = "Prod"
+  }
+}
+
+output "prod_vpc_id" {
+  value = "${data.aws_vpc.prod_vpc.id}"
+}
+
+output "prod_vpc_cidr" {
+  value = "${data.aws_vpc.prod_vpc.cidr_blockP}"
+}
+
+
 output "aws_vpcs" {
   value = "${data.aws_vpcs.my_vpcs.ids}"
 }
