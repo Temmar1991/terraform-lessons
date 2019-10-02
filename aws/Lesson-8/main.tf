@@ -6,7 +6,7 @@ data "aws_availability_zones" "working" {}
 
 
 output "data_aws_availabitity_zones" {
-  value = data.aws_availability_zones.working.names
+  value = data.aws_availability_zones.working.names[1]
 }
 
 
