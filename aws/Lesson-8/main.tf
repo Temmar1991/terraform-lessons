@@ -10,7 +10,11 @@ data "aws_caller_identity" "current" {
 
 data "aws_region" "current" {}
 
+data "aws_vpcs" "my_vpcs" {}
 
+output "aws_vpcs" {
+  value = "${data.aws_vpcs.my_vpcs.ids}"
+}
 
 
 output "data_aws_availabitity_zones" {
