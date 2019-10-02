@@ -8,6 +8,9 @@ data "aws_caller_identity" "current" {
   
 }
 
+data "aws_region" "current" {}
+
+
 
 
 output "data_aws_availabitity_zones" {
@@ -17,6 +20,15 @@ output "data_aws_availabitity_zones" {
 output "data_aws_caller_identity" {
   value = data.aws_caller_identity.current.account_id
 }
+
+output "data_aws_region" {
+  value = data.aws_region.current.name
+}
+
+output "data_aws_region_desc" {
+  value = data.aws_region.current.description
+}
+
 
 
 
