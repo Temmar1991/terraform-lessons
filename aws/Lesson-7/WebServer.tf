@@ -18,6 +18,8 @@ resource "aws_instance" "my_server_web" {
     Name = "Server-Web"
   }
 
+  depends_on = [aws_instance.my_server_db]
+
 }
 
 resource "aws_instance" "my_server_app" {
@@ -29,6 +31,8 @@ resource "aws_instance" "my_server_app" {
   tags = {
     Name = "Server-Application"
   }
+
+  depends_on = [aws_instance.my_server_db]
 
 }
 
