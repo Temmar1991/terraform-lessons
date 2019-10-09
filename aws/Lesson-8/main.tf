@@ -43,8 +43,6 @@ resource "aws_subnet" "prod_subnet_2" {
 }
 
 
-
-
 output "prod_vpc_id" {
   value = "${data.aws_vpc.prod_vpc.id}"
 }
