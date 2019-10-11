@@ -11,7 +11,7 @@ provider "aws" {
 resource "aws_instance" "my_webserver" {
   ami = "ami-00aa4671cbf840d82"
   instance_type = "t3.micro"
-  vpc_security_group_ids = [aws_security_group.my_webserver.id]
+  vpc_security_group_ids = ["${aws_security_group.my_webserver.id}"]
   user_data = <<EOF
 #! /bin/bash
 yum -y update
