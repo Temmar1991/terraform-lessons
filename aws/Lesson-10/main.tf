@@ -89,7 +89,7 @@ resource "aws_autoscaling_group" "web" {
 
 resource "aws_elb" "web" {
    name = "WebServer-HA-ELB"
-   availability_zones = ["${data.aws_availability_zones.available.names[0]}", "${data.aws_availability_zones.available.names[1]}"]
+   availability_zones = ["${data.aws_availability_zones.available.names[1]}", "${data.aws_availability_zones.available.names[2]}"]
    security_groups = ["${aws_security_group.my_webserver-dynamic.id}"] 
    listener {
        lb_port = 80
@@ -111,12 +111,12 @@ resource "aws_elb" "web" {
 }
 
 resource "aws_default_subnet" "default_az1" {
-  availability_zone = "${data.aws_availability_zones.available.names[0]}"
+  availability_zone = "${data.aws_availability_zones.available.names[1]}"
 
 }
 
 resource "aws_default_subnet" "default_az2" {
-  availability_zone = "${data.aws_availability_zones.available.names[1]}"
+  availability_zone = "${data.aws_availability_zones.available.names[2]}"
 
 }
 
