@@ -15,7 +15,7 @@ data "aws_ami" "latest_amazon_linux" {
 
 resource "aws_eip" "my_static_ip" {
   instance = "${aws_instance.web_server.id}"
-  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"] Server IP"})
+  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"]} Server IP"})
   
 }
 
@@ -52,7 +52,7 @@ resource "aws_security_group" "my_webserver" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"] Server Security Group"})}
+  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"]} Server Security Group"})}
 
 
 
