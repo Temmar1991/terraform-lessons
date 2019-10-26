@@ -52,9 +52,7 @@ resource "aws_security_group" "my_webserver" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"] Server Security Group"})
-
-}
+  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"] Server Security Group"})}
 
 
 
