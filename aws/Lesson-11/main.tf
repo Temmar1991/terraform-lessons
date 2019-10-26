@@ -53,6 +53,7 @@ resource "aws_security_group" "my_webserver" {
   }
 
   tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"]} Server Security Group"})}
+  
 
 
 
