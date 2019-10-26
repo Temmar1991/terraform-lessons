@@ -48,7 +48,8 @@ resource "aws_security_group" "my_webserver-dynamic" {
 }
 
 resource "aws_launch_configuration" "web" {
-  name          = "WebServer-Highly-Available"
+  # name          = "WebServer-Highly-Available"
+  name_prefix   = "WebServer-Highly-Available-"
   image_id      = "${data.aws_ami.latest_amazon_linux.id}"
   instance_type = "t3.micro"
   security_groups = ["${aws_security_group.my_webserver-dynamic.id}"]
