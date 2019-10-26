@@ -1,6 +1,3 @@
-variable "region" {}
-
-
 provider "aws" {
     region = "${var.region}"
 }
@@ -19,20 +16,24 @@ data "aws_ami" "latest_amazon_linux" {
 resource "aws_eip" "my_static_ip" {
   instance = "${aws_instance.web_server.id}"
 
+  tags = "${var.common_tags}"
+
+/*
   tags = {
     Name = "Server IP"
     Owner = "Artem Melnyk"
     Project = "Phoenix"
-    WhichRegion = "${var.region}"
   }
+*/
   
 }
 
 
 resource "aws_instance" "web_server" {
   ami = "${data.aws_ami.latest_amazon_linux.id}"
-  instance_type = "t3.micro"
+  instance_type = "${var.instance_type}"
   vpc_security_group_ids = ["${aws_security_group.my_webserver.id}"]
+  monitoring = "${var.enable_detailed_monitoring}"
 
   tags = {
     Name = "Server Build By Terraform"
@@ -46,7 +47,7 @@ resource "aws_security_group" "my_webserver" {
   name = "My Security Group"
   
   dynamic "ingress" {
-    for_each = ["80", "443"]
+    for_each = "${var.allow_ports}"
     content {
       from_port = ingress.value
       to_port   = ingress.value
