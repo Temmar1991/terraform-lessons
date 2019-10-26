@@ -17,7 +17,7 @@ resource "aws_eip" "my_static_ip" {
   instance = "${aws_instance.web_server.id}"
 
   # tags = "${var.common_tags}"
-  tags = merge("${var.common_tags}", {Name = "Server IP"})
+  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"] Server IP"})
 
 /*
   tags = {
@@ -36,11 +36,8 @@ resource "aws_instance" "web_server" {
   vpc_security_group_ids = ["${aws_security_group.my_webserver.id}"]
   monitoring = "${var.enable_detailed_monitoring}"
 
-  tags = {
-    Name = "Server Build By Terraform"
-    Owner = "Artem Melnyk"
-    Project = "Phoenix"
-  }
+  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"] Server Build By Terraform"})
+
 }
 
 resource "aws_security_group" "my_webserver" {
@@ -65,11 +62,7 @@ resource "aws_security_group" "my_webserver" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "Server Security Group"
-    Owner = "Artem Melnyk"
-    Project = "Phoenix"
-  }
+  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"] Server Security Group"})
 
 }
 
