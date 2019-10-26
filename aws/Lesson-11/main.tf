@@ -26,7 +26,7 @@ resource "aws_instance" "web_server" {
   vpc_security_group_ids = ["${aws_security_group.my_webserver.id}"]
   monitoring = "${var.enable_detailed_monitoring}"
 
-  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"] Server Build By Terraform"})
+  tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"]} Server Build By Terraform"})
 
 }
 
