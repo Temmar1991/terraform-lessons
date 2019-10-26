@@ -15,17 +15,7 @@ data "aws_ami" "latest_amazon_linux" {
 
 resource "aws_eip" "my_static_ip" {
   instance = "${aws_instance.web_server.id}"
-
-  # tags = "${var.common_tags}"
   tags = merge("${var.common_tags}", { Name = "${var.common_tags["Environment"] Server IP"})
-
-/*
-  tags = {
-    Name = "Server IP"
-    Owner = "Artem Melnyk"
-    Project = "Phoenix"
-  }
-*/
   
 }
 
