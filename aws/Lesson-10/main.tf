@@ -62,7 +62,7 @@ resource "aws_launch_configuration" "web" {
 
 resource "aws_autoscaling_group" "web" {
 
-    name = "WebServer-Highly-Available"
+    name = "ASG-${aws_launch_configuration.web.name}"
     launch_configuration = "${aws_launch_configuration.web.name}"
     min_size = 2
     max_size = 2
