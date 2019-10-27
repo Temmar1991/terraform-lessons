@@ -1,5 +1,5 @@
 region = "ca-central-1"
-instance = "t2.micro"
+instance_typePcomm = "t2.micro"
 enable_detailed_monitoring = false
 
 common_tags = {
