@@ -56,7 +56,7 @@ resource "aws_instance" "myserver" {
 resource "null_resource" "command6" {
   provisioner "local-exec" {
       command = "echo Terraform END: $(date) >> log.txt"
+      }
 
-      depends_on = [null_resource.command1, null_resource.command2, null_resource.command3, null_resource.command4, aws_instance.myserver ]
-  }
+  depends_on = [null_resource.command1, null_resource.command2, null_resource.command3, null_resource.command4, aws_instance.myserver ]
 }
