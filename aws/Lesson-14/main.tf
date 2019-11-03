@@ -22,3 +22,14 @@ resource "null_resource" "command3" {
       interpreter = ["python" , "-c"]
   }
 }
+
+resource "null_resource" "command4" {
+  provisioner "local-exec" {
+      command = "echo $NAME1 NAME2 $NAME3 >> names.txt"
+      environment {
+          NAME1 = "Vasya"
+          NAME2 = "Petya"
+          NAME3 = "Kolya"
+      }
+  }
+}
