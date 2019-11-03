@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "null_resourse" "command1" {
-  provisioner "local-execution" {
+  provisioner "local-exec" {
       command = "echo Terraform START: $(date) >> log.txt"
   }
 }
