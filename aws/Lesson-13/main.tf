@@ -20,7 +20,7 @@ locals {
   city = "Kyiv"
   az_list = join(",", data.aws_availability_zones.available.names)
   region = data.aws_region.current.description
-  location = "In ${local.az_list} there are AZ: ${local.az_list}" 
+  location = "In ${local.region} there are AZ: ${local.az_list}" 
 }
 
 
