@@ -50,4 +50,3 @@ resource "aws_instance" "my_dev_bastion" {
   
   }
 }
-
