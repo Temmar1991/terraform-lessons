@@ -17,6 +17,15 @@ variable "noprod_owner" {
 }
 
 
+variable "eec2_size" {
+  default =  {
+      "prod" = "t3.medium"
+      "dev" = "t3.micro"
+      "staging" = "t3.small"
+  }
+}
+
+
 
 data "aws_ami" "amazon_ami" {
   most_recent = true
@@ -31,6 +40,17 @@ data "aws_ami" "amazon_ami" {
 resource "aws_instance" "my_webserver1" {
   ami = "${data.aws_ami.amazon_ami.id}"
   instance_type = (var.env == "prod" ? "t2.large" : "t2.micro")
+
+  tags = {
+      Name = "${var.env}-server"
+      Owner = "${var.env}" == "prod" ? "${var.prod_owner}" : "${var.noprod_owner}"
+
+  }
+}
+
+resource "aws_instance" "my_webserver2" {
+  ami = "${data.aws_ami.amazon_ami.id}"
+  instance_type = lookup("${var.eec2_size}", "${var.env}")
 
   tags = {
       Name = "${var.env}-server"
