@@ -43,10 +43,9 @@ resource "aws_instance" "my_webserver1" {
 resource "aws_instance" "my_dev_bastion" {
   count = "${var.env}" == "dev" ? 1 : 0
   ami = "${data.aws_ami.amazon_ami.id}"
-  instance_type = t2.micro"
+  instance_type = "t2.micro"
 
   tags = {
       Name = "Bastion Server for Dev-Sever"
-  
   }
 }
