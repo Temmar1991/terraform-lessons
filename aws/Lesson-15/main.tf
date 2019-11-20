@@ -35,13 +35,11 @@ variable "allow_port_list" {
   
 }
 
-
-
 data "aws_ami" "amazon_ami" {
   most_recent = true
   owners = ["amazon"]
   filter {
-      name = "name"
+      name = "name"P
       values = ["amzn2-ami-hvm-*-x86_64-*"]
   }
 }
@@ -50,7 +48,7 @@ data "aws_ami" "amazon_ami" {
 resource "aws_instance" "my_webserver1" {
   ami = "${data.aws_ami.amazon_ami.id}"
 #   instance_type = (var.env == "prod" ? "t2.large" : "t2.micro")
-  instance_type = "${var.env}" == "prod" ? "${var.eec2_size["prod"]}" : "${var.eec2_size["dev"}"
+  instance_type = "${var.env}" == "prod" ? "${var.eec2_size["prod"]}" : "${var.eec2_size["dev"]}"
 
   tags = {
       Name = "${var.env}-server"
