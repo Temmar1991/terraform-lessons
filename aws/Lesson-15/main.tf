@@ -4,7 +4,7 @@ provider "aws" {
 
 
 variable "env" {
-  default = "prod"
+  default = "dev"
 }
 
 variable "prod_owner" {
