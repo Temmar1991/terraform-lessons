@@ -34,7 +34,7 @@ resource "aws_instance" "my_webserver1" {
 
   tags = {
       Name = "${var.env}-server"
-      Owner = ${var.env} == "prod" ? "${var.prod_owner}" : "pa${var.noprod_owner}"
+      Owner = ${var.env} == "prod" ? "${var.prod_owner}" : "${var.noprod_owner}"
 
   }
 }
