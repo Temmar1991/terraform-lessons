@@ -34,3 +34,8 @@ resource "aws_instance" "servers" {
       Name = "Server Number ${count.index + 1}"
   }
 }
+
+
+output "created_iam_users_all" {
+  value = aws_iam_user.users   
+}
