@@ -31,6 +31,6 @@ resource "aws_instance" "servers" {
   ami = "${data.aws_ami.amazon_ami.id}"
   instance_type = "t3.micro"
   tags = {
-      Name = "Server Number ${count.index}"
+      Name = "Server Number ${count.index + 1}"
   }
 }
