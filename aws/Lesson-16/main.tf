@@ -39,3 +39,7 @@ resource "aws_instance" "servers" {
 output "created_iam_users_all" {
   value = aws_iam_user.users   
 }
+
+output "сreated_iam_users_ids" {
+    value = aws_iam_users.users[*].id
+}
