@@ -54,7 +54,7 @@ output "created_iam_users_custom" {
 output "created_users_map" {
   value = {
       for user in aws_iam_user.users:
-      user.uniq_id => user.id 
+      user.unique_id => user.id 
   }
 }
 
