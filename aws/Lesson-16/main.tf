@@ -50,3 +50,11 @@ output "created_iam_users_custom" {
       "Username: ${user.name} has ARN: ${user.arn}"
   ]
 }
+
+output "created_users_map" {
+  value = {
+      for user in aws_iam_user.users:
+      user.uniq_id => user.id 
+  }
+}
+
