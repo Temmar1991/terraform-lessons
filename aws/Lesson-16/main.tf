@@ -43,3 +43,10 @@ output "created_iam_users_all" {
 output "сreated_iam_users_ids" {
     value = aws_iam_user.users[*].id
 }
+
+output "created_iam_users_custom" {
+  value = [
+      for user in aws_iam_user.users:
+      "Username: ${user.name} has ARN: ${user.arn}"
+  ]
+}
