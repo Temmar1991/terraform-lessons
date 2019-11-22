@@ -41,5 +41,5 @@ output "created_iam_users_all" {
 }
 
 output "сreated_iam_users_ids" {
-    value = aws_iam_users.users[*].id
+    value = aws_iam_user.users[*].id
 }
