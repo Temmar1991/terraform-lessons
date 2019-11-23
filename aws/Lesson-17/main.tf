@@ -56,7 +56,7 @@ resource "aws_instance" "my_default_server" {
 resource "aws_instance" "my_usa_server" {
   provider = aws.USA
   instance_type = "t3.micro"
-  ami = "${data.aws_ami.amazon_ami.id}"
+  ami = "${data.aws_ami.amazon_usa.id}"
   tags = {
       Name = "USA server"
   }
@@ -65,7 +65,7 @@ resource "aws_instance" "my_usa_server" {
 resource "aws_instance" "my_ger_server" {
   provider = aws.GER
   instance_type = "t3.micro"
-  ami = "${data.aws_ami.amazon_ami.id}"
+  ami = "${data.aws_ami.amazon_ger.id}"
   tags = {
       Name = "GERMANY server"
   }
