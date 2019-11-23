@@ -46,7 +46,7 @@ data "aws_ami" "amazon_ger" {
 
 resource "aws_instance" "my_default_server" {
   instance_type = "t3.micro"
-  ami = "${data.aws_ami.amazon_ami.id}"
+  ami = "${data.aws_ami.amazon_default.id}"
   tags = {
       Name = "Default server"
   }
