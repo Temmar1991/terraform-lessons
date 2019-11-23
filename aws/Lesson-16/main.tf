@@ -67,3 +67,8 @@ output "custom_if_length" {
 }
 
 
+output "server_all" {
+  value = aws_instance.servers
+}
+
+
