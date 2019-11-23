@@ -68,7 +68,9 @@ output "custom_if_length" {
 
 
 output "server_all" {
-  value = aws_instance.servers
+  value = {
+      for server "${aws_instance.servers}":
+      server.id => server.public_ip
+  }
 }
-
 
