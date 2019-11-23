@@ -62,7 +62,7 @@ output "custom_if_length" {
   value = [
       for x in aws_iam_user.users:
       x.name
-      if lenght(x.name) == 4
+      if length(x.name) == 4
   ]
 }
 
