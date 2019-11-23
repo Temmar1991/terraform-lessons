@@ -14,7 +14,27 @@ provider "aws" {
 
 #============================================================
 
-data "aws_ami" "amazon_ami" {
+data "aws_ami" "amazon_default" {
+  most_recent = true
+  owners = ["amazon"]
+  filter {
+      name = "name"
+      values = ["amzn2-ami-hvm-*-x86_64-*"]
+  }
+}
+
+data "aws_ami" "amazon_usa" {
+  probider = aws.USA
+  most_recent = true
+  owners = ["amazon"]
+  filter {
+      name = "name"
+      values = ["amzn2-ami-hvm-*-x86_64-*"]
+  }
+}
+
+data "aws_ami" "amazon_ger" {
+  probider = aws.GER
   most_recent = true
   owners = ["amazon"]
   filter {
