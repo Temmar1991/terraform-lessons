@@ -24,7 +24,7 @@ data "aws_ami" "amazon_default" {
 }
 
 data "aws_ami" "amazon_usa" {
-  probider = aws.USA
+  provider = aws.USA
   most_recent = true
   owners = ["amazon"]
   filter {
@@ -34,7 +34,7 @@ data "aws_ami" "amazon_usa" {
 }
 
 data "aws_ami" "amazon_ger" {
-  probider = aws.GER
+  provider = aws.GER
   most_recent = true
   owners = ["amazon"]
   filter {
@@ -46,7 +46,7 @@ data "aws_ami" "amazon_ger" {
 
 resource "aws_instance" "my_default_server" {
   instance_type = "t3.micro"
-  ami = "${data.aws_ami.amazon_default.id}"
+  ami = "${data.aws_ami.amazon_default  .id}"
   tags = {
       Name = "Default server"
   }
