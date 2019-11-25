@@ -2,6 +2,14 @@ provider "aws" {
   region = "ca-central-1"
 }
 
+terraform {
+  backend = "s3" {
+    bucket = "amelnyk-terraform-state"
+    key = "dev/network/terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
+
 variable "vpc_cidr" {
   default = "10.0.0.0/16"
 }
