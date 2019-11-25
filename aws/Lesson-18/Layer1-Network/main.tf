@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 terraform {
-  backend = "s3" {
+  backend "s3" {
     bucket = "amelnyk-terraform-state"
     key = "dev/network/terraform.tfstate"
     region = "eu-central-1"
