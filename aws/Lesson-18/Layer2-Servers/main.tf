@@ -16,7 +16,7 @@ data "terraform_remote_state" "network" {
 resource "aws_security_group" "webserver" {
   
   name = "WebServer Security Group"
-  vpc_id = "$data.terraform_remote_state.network.outputs.vpc_id"
+  vpc_id = "${data.terraform_remote_state.network.outputs.vpc_id}"
 
   ingress {
       from_port = 80
@@ -29,7 +29,7 @@ resource "aws_security_group" "webserver" {
       from_port = 22
       to_port = 22
       protocol = "tcp"
-      cidr_blocks = [data.terraform_remote_state.network.outputs.vpc_cidr]
+      cidr_blocks = ["${data.terraform_remote_state.network.outputs.vpc_cidr}"]
   }
 
   egress {
