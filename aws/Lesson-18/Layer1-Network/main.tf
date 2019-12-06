@@ -83,7 +83,7 @@ output "vpc_cidr" {
   value = aws_vpc.main.cidr_block
 }
 
-output "public_subnets_id" {
+output "public_subnets_ids" {
   value = "${aws_subnet.public_subnets[*].id}"
 }
 

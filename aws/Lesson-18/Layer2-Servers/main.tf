@@ -10,6 +10,7 @@ terraform {
   }
 }
 
+#=====================================================
 data "terraform_remote_state" "network" {
     backend = "s3"
     config = {
@@ -17,6 +18,36 @@ data "terraform_remote_state" "network" {
         key = "dev/network/terraform.tfstate"
         region = "eu-central-1"
     }
+}
+
+data "aws_ami" "latest_amazon_linux" {
+  most_recent = true
+  owners = ["amazon"]
+  filter {
+      name = "name"
+      values = ["amzn2-ami-hvm-*-x86_64-*"]
+  }
+}
+
+#=======================================================
+
+
+resource "aws_instance" "webserver" {
+  ami = "${data.aws_ami.latest_amazon_linux.id}"
+  instance_type = "t3.micro"
+  vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
+  subnet_id = "${data.terraform_remote_state.network.outputs.public_subnets_ids[0]}"
+  user_data = <<EOF
+  #! /bin/bash
+  yum -y update
+  yum -y install httpd
+  myip=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
+  echo "<h2>Web Server with ip ${myip}</h2><br>Build by Terraform with remote state" > /var/www/html/index.html
+  chkconfig httpd on
+  EOF
+  tags = {
+      Name = "WebServer"
+  }
 }
 
 
@@ -60,6 +91,11 @@ output "network_details" {
 
 output "webserver_sg_id" {
   value = "${aws_security_group.webserver.id}"
+}
+
+
+output "webserver_public_ip" {
+  value = "${aws_instance.webserver.public_ipp}"
 }
 
 
