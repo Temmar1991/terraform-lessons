@@ -41,8 +41,8 @@ resource "aws_instance" "webserver" {
   #! /bin/bash
   yum -y update
   yum -y install httpd
-  myip=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
-  echo "<h2>Web Server with ip ${myip}</h2><br>Build by Terraform with remote state" > /var/www/html/index.html
+  myip=`curl http://169.254.169.254/latest/meta-data/local-ipv4`
+  echo "<h2>Web Server with ip $myip</h2><br>Build by Terraform with remote state" > /var/www/html/index.html
   chkconfig httpd on
   EOF
   tags = {
