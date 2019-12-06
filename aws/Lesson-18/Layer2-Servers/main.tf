@@ -36,7 +36,7 @@ resource "aws_instance" "webserver" {
   ami = "${data.aws_ami.latest_amazon_linux.id}"
   instance_type = "t3.micro"
   vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
-  subnet_id = "${data.terraform_remote_state.network.outputs.public_subnets_ids[0]}"
+  subnet_id = "${data.terraform_remote_state.network.outputs.public_subnet_ids[0]}"
   user_data = <<EOF
   #! /bin/bash
   yum -y update
