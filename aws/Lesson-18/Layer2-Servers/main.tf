@@ -29,12 +29,12 @@ resource "aws_security_group" "webserver" {
       from_port = 22
       to_port = 22
       protocol = "tcp"
-      cidr_blocks = ["${data.terraform_remote_state.network.outputs.vpc_cidr}"]
+      cidr_blocks = [data.terraform_remote_state.network.outputs.vpc_cidr]
   }
 
   egress {
     from_port = 0
-    to_port   = 0
+    to_port   = 0   
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
