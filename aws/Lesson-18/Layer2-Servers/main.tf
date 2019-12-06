@@ -2,6 +2,13 @@ provider "aws" {
   region = "ca-central-1"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "amelnyk-terraform-state"
+    key = "dev/servers/terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
 
 data "terraform_remote_state" "network" {
     backend = "s3"
@@ -36,7 +43,7 @@ resource "aws_security_group" "webserver" {
     from_port = 0
     to_port   = 0   
     protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"] 
   }
 
   tags = {
