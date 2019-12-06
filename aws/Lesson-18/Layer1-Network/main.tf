@@ -23,13 +23,13 @@ resource "aws_vpc" "main" {
 
 
 resource "aws_internet_gateway" "main" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.main.vpc_id
 }
 
 
 #---------------------------------------------------------
 output "vpc_id" {
-  value = "aws_vpc.main.id"
+  value = "aws_vpc.main.vpc_id"
 }
 
 output "vpc_cidr" {
